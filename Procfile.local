@@ -1,0 +1,2 @@
+api: bin/rails server -p 3001
+frontend: sh -c 'cd frontend && yarn run dev'
