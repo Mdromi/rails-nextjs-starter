@@ -29,6 +29,19 @@ A starting point for your Ruby on Rails, PostgreSQL, Next.js, and Tailwind CSS p
     ```bash
     bundle install
     ```
+4.  Rename the `.env.example` file to `.env`
+    ```bash
+    mv .env.example .env
+    ```
+4.  Add your database information
+    ```bash
+    # FOR DATABASE
+    DATABASE_NAME_DEVELOPMENT=your_app_name_development
+    DATABASE_NAME_TEST=your_app_name_test
+    DATABASE_NAME_PRODUCTION=your_app_name_productions
+    DATABASE_USERNAME=your_database_username
+    DATABASE_PASSWORD=your_database_password
+    ```
 4. Setup the database:
     ```bash
     rails db:create
@@ -36,7 +49,7 @@ A starting point for your Ruby on Rails, PostgreSQL, Next.js, and Tailwind CSS p
     ```
 5. Install dependencies frontend
     ```bash
-    cd frontend && yarn install
+    cd frontend && yarn install && cd ..
     ```
 6. Start the servers using the provided script:
     ```bash

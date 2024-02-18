@@ -1,9 +1,26 @@
 Rails.application.routes.draw do
-  namespace :api, defaults: { format: 'json' } do
-    namespace :v1 do
-      resources :health, only: [:index]
-    end
-  end
+  # devise_for :users
+  devise_for :users, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
+  # namespace :api, defaults: { format: 'json' } do
+  #   namespace :v1 do
+  #     resources :health, only: [:index]
+  #     resources :registration
+  #     resources :sessions
+  #     resources :password_reset
+  #     resources :password
+  #   end
+  # end
+
+  resources :health, only: [:index], controller: 'health/health'
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

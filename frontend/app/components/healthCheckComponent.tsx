@@ -1,12 +1,13 @@
 "use client";
 import axios from 'axios';
 import { useState } from 'react';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // Define a function to check the health of the backend
 const checkBackendHealth = async () => {
   try {
     // Make a GET request to the health endpoint
-    const response = await axios.get('http://127.0.0.1:3001/api/v1/health');
+    const response = await axios.get(`${apiUrl}/health`);
     console.log(response.data);
     
     // Return the response data
