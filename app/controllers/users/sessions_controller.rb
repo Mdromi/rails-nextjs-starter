@@ -4,13 +4,19 @@ class Users::SessionsController < Devise::SessionsController
   include RackSessionsFix
   respond_to :json
   private
-  def respond_with(current_user, _opts = {})
-    render json: {
-      status: { 
-        code: 200, message: 'Logged in successfully.',
-        data: { user: UserSerializer.new(current_user).serializable_hash[:data][:attributes] }
-      }
-    }, status: :ok
+  def respond_with(resource, _opts = {})
+    if resource && resource.verified?
+      render json: {
+        status: { 
+          code: 200, message: 'Logged in successfully.',
+          data: { user: UserSerializer.new(resource).serializable_hash[:data][:attributes] }
+        }
+      }, status: :ok
+    else
+      render json: {
+        error: "Please verify your email address"
+      }, status: :unauthorized
+    end
   end
   def respond_to_on_destroy
     if request.headers['Authorization'].present?

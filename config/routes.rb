@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
   # devise_for :users
+  # Devise routes
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
     registration: 'signup'
-  },
-  controllers: {
+  }, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  # Custom email verification routes
+  scope :verify do
+    get '/', to: 'verify#edit', as: 'verify'
+    get '/new', to: 'verify#new', as: 'new_verify'
+    put '/update', to: 'verify#update', as: 'update_verify'
+    post '/resend', to: 'verify#create', as: 'resend_verify'
+  end
   # namespace :api, defaults: { format: 'json' } do
   #   namespace :v1 do
   #     resources :health, only: [:index]
