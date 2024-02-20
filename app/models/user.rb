@@ -11,6 +11,8 @@ class User < ApplicationRecord
   # Additional columns for email verification
   attr_accessor :pin_0, :pin_1, :pin_2, :pin_3
 
+  validates :password, presence: true, length: { minimum: 8 }
+
   # Callbacks
   after_create :update_user_verified_column_to_true
   after_create :send_pin!

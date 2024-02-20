@@ -25,7 +25,6 @@ class ApplicationController < ActionController::API
     header = request.headers['Authorization']
     token = header.split(' ').last if header.present?
     return nil unless token
-    puts "token #{token}"
     begin
       jwt_payload = JWT.decode(request.headers['Authorization'].split(' ').last, Rails.application.credentials.devise_jwt_secret_key!).first
       User.find(jwt_payload['sub'])

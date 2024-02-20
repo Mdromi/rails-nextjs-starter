@@ -9,6 +9,7 @@ gem 'dotenv-rails', require: 'dotenv/load'
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
+gem 'rack-cors'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -43,6 +44,8 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem 'rspec-rails', '~> 6.1.0'
+  gem 'factory_bot_rails', '~> 6.0'
 end
 
 group :development do
@@ -50,4 +53,3 @@ group :development do
   # gem "spring"
 end
 
-gem 'rack-cors'

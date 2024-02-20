@@ -42,6 +42,12 @@ A starting point for your Ruby on Rails, PostgreSQL, Next.js, and Tailwind CSS p
     DATABASE_USERNAME=your_database_username
     DATABASE_PASSWORD=your_database_password
     ```
+5. Setup SMTP Server
+    ```bash
+    # SETTING UP SMTP SERVER
+    GMAIL_USERNAME=your_gmail_username
+    GMAIL_PASSWORD=your_gmail_password
+    ```
 4. Setup the database:
     ```bash
     rails db:create
