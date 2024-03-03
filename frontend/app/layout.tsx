@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Rails-Next.js-Tailwind Starter",
-  description: "A starting point for your Ruby on Rails, PostgreSQL, Next.js, and Tailwind CSS project.",
+  description:
+    "A starting point for your Ruby on Rails, PostgreSQL, Next.js, and Tailwind CSS project.",
 };
 
 export default function RootLayout({

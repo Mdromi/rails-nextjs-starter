@@ -1,4 +1,4 @@
-import HealthCheckComponent from "../components/healthCheckComponent";
+import HealthCheckComponent from "../components/HealthCheck";
 
 export default function Health() {
   return (

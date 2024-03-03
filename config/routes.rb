@@ -17,6 +17,17 @@ Rails.application.routes.draw do
     put '/update', to: 'verify#update', as: 'update_verify'
     post '/resend', to: 'verify#create', as: 'resend_verify'
   end
+
+   # Route to get user by email
+  #  get '/users/:email', to: 'users#show_by_email'
+  # resources :users, controller: 'users/users'
+  namespace :users do
+    get '/:email', to: 'users#show_by_email'
+  end
+  #  resources :users, only: [] do
+  #   get 'show_by_email', on: :collection
+  # end
+
   # namespace :api, defaults: { format: 'json' } do
   #   namespace :v1 do
   #     resources :health, only: [:index]
