@@ -9,15 +9,14 @@ export async function getSession() {
 export async function getCurrentUser() {
   try {
     const session = await getSession();
-    console.log("sessions", session);
+    // console.log("sessions", session);
     
 
     if (!session?.user?.email) return null;
-    const data = await getUserByEmail(session.user.email);
-    console.log("user_email", data);
+    // const data = await getUserByEmail(session.user.email);
     
 
-    return null
+    return session?.user
   } catch (error: any) {
     console.error("Error in getCurrentUser:", error);
     return null;

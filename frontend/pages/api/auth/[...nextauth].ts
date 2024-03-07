@@ -39,14 +39,16 @@ export const authOptions: AuthOptions = {
           const response = await axios.post(`${apiUrl}/login`, data);
 
           const user = response.data.status.data.user;
-          console.log("user", user);
 
           // Extract bearer token from response headers
           const accessToken = response.headers.authorization.split(" ")[1];
 
-          return { ...user, accessToken };
-          // Save user data in session
-          // return Promise.resolve({ ...user, accessToken });
+          const userDataWithToken = {
+            ...user,
+            accessToken,
+          };
+
+          return userDataWithToken;
         } catch (error: any) {
           console.error("error", error.message);
           throw new Error("Invalid email or password");
@@ -55,18 +57,17 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session }) {
-      try {
-        console.log("data_sessions", session);
-        const data = await getUserByEmail(session.user.email);
-        
-        
-        session.user = data.userData;
-        return session;
-      } catch (error) {
-        console.error("Error in session callback:", error);
-        throw error;
+    async session({ session, token }) {
+      if (token && token.user) {
+        session.user = token.user;
       }
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
     },
   },
   pages: {
@@ -76,7 +77,7 @@ export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export default NextAuth(authOptions);

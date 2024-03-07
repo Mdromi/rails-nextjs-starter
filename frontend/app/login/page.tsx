@@ -5,8 +5,6 @@ import { getCurrentUser } from "@/actions/getCurrentUser";
 
 const Login = async () => {
   const currentUser = await getCurrentUser()
-  console.log("currentUser", currentUser);
-  
   return (
     <Container>
       <FormWrap>

@@ -65,7 +65,7 @@ const LoginForm = ({ currentUser }: { currentUser: SafeUser | null }) => {
   };
 
   if (currentUser) {
-    return <p className="text-center">Looged in, Retruning...</p>;
+    return <p className="text-center text-slate-100">Looged in, Retruning...</p>;
   }
 
   return (
