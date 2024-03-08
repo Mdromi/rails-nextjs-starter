@@ -11,4 +11,6 @@ export type SafeUser = {
   name: string;
   role: string;
   avatar: string | null;
+  verified: boolean;
+  accessToken?: string;
 };

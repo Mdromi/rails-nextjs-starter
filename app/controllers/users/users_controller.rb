@@ -2,7 +2,6 @@ class Users::UsersController < ApplicationController
     # GET /users/:email
     def show_by_email
       email = params[:email]
-      puts "backend_email #{email}"
   
       # Use safe navigation (&.) to avoid errors if email param is nil
       user = User.find_by(email: email)

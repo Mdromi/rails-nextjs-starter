@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   private
   def respond_with(resource, _opts = {})
 
-    if resource && resource.verified?
+    if resource
       render json: {
         status: { 
           code: 200, message: 'Logged in successfully.',

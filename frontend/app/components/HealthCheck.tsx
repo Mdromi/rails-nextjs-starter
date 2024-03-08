@@ -8,8 +8,6 @@ const checkBackendHealth = async () => {
   try {
     // Make a GET request to the health endpoint
     const response = await axios.get(`${apiUrl}/health`);
-    console.log(response.data);
-    
     // Return the response data
     return response.data;
   } catch (error) {
