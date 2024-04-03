@@ -10,6 +10,7 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
 gem 'rack-cors'
+gem 'omniauth-google-oauth2'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"

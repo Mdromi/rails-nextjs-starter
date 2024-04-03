@@ -17,9 +17,9 @@ class User < ApplicationRecord
   after_create :update_user_verified_column_to_true
   after_create :send_pin!
 
+
   # Method to update the user's email verification status to true
   def update_user_verified_column_to_true
-    # Perform the email verification process after user creation
     UpdateUserJob.perform_now(self)
   end
 

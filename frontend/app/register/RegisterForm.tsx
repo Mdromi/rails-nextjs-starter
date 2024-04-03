@@ -76,6 +76,9 @@ const RegisterForm = ({ currentUser }: { currentUser: SafeUser | null }) => {
     }
   };
   
+  const toastMessage = () => {
+    toast.error("Working on OAuth functionality")
+  }
 
   if (currentUser) {
     return <p className="text-center">Looged in, Retruning...</p>;
@@ -88,7 +91,10 @@ const RegisterForm = ({ currentUser }: { currentUser: SafeUser | null }) => {
         outline
         label="Sign up with Google"
         icon={AiOutlineGoogle}
-        onClick={() => signIn("google")}
+        onClick={() => {
+          // signIn("google");
+          toastMessage();
+        }}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
@@ -120,7 +126,7 @@ const RegisterForm = ({ currentUser }: { currentUser: SafeUser | null }) => {
         label={isLoading ? "Loading" : "Sign Up"}
         onClick={handleSubmit(onSubmit)}
       />
-      <p className="text-sm">
+      <p className="text-sm text-slate-100">
         Already have an account?{" "}
         <Link className="underline" href={"/login"}>
           Log in

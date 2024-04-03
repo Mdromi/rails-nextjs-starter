@@ -48,9 +48,6 @@ const LoginForm = ({ currentUser }: { currentUser: SafeUser | null }) => {
         redirect: false,
       });
 
-      console.log("signInResult", );
-      
-
       if (signInResult?.ok) {
         toast.success("Logged In");
         router.refresh();
@@ -63,6 +60,10 @@ const LoginForm = ({ currentUser }: { currentUser: SafeUser | null }) => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const toastMessage = () => {
+    toast.error("Working on OAuth functionality");
   };
 
   if (currentUser && currentUser.verified) {
@@ -78,7 +79,10 @@ const LoginForm = ({ currentUser }: { currentUser: SafeUser | null }) => {
         outline
         label="Continue  with Google"
         icon={AiOutlineGoogle}
-        onClick={() => {}}
+        onClick={() => {
+          // signIn("google");
+          toastMessage();
+        }}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
@@ -102,7 +106,7 @@ const LoginForm = ({ currentUser }: { currentUser: SafeUser | null }) => {
         label={isLoading ? "Loading" : "Login"}
         onClick={handleSubmit(onSubmit)}
       />
-      <p className="text-sm">
+      <p className="text-sm text-slate-100">
         Do not have an account?{" "}
         <Link className="underline" href={"/register"}>
           Register

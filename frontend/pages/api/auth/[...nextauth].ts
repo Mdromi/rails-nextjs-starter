@@ -35,7 +35,7 @@ export const authOptions: AuthOptions = {
               password: credentials?.password,
             },
           };
-
+          
           const response = await axios.post(`${apiUrl}/login`, data);
 
           const user = response.data.status.data.user;
@@ -57,7 +57,33 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
+    // async signIn({ account, profile, user }) {
+    //   if (account?.type === "oauth") {
+    //     try {
+    //       const newUser = extractUserInfo(profile);
+    //       const response = await signupUser(newUser);
+    
+    //       console.log("account", account);
+    //       console.log("profile", profile);
+    //       console.log("user", user);
+    
+    //       const accessToken = response.accessToken;
+    //       const userData = { accessToken, ...response.data.data };
+    //       console.log("signIn userData:", userData);
+    //       return true; // Return true for successful sign-in
+    //     } catch (error) {
+    //       console.error("Error signing in:", error);
+    //       return false; // Indicates failed sign-in
+    //     }
+    //   }
+    
+    //   return true; // Indicates successful sign-in
+    // },
+    async session({ session, token, user }) {
+      // console.log("session_user", user);
+      // console.log("session_session", session);
+      // console.log("session_token", token);
+
       if (token && token.user) {
         session.user = token.user;
       }
@@ -65,6 +91,11 @@ export const authOptions: AuthOptions = {
       return session;
     },
     async jwt({ token, trigger, session, user }) {
+      // console.log("jwt_token", token);
+      // console.log("jwt_trigger", trigger);
+      // console.log("jwt_session", session);
+      // console.log("jwt_user", user);
+
       if (trigger === "update") {
         if (session) {
           token.user = session;
@@ -85,5 +116,34 @@ export const authOptions: AuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
+
+function extractUserInfo(profile: any) {
+  const { name, email } = profile;
+  const verified = profile?.email_verified || false;
+  const password = generateRandomPassword();
+  return { name, email, verified, password };
+}
+
+async function signupUser(userData: any) {
+  try {
+    const response = await axios.post(`${apiUrl}/signup`, { user: userData });
+    const accessToken = response.headers.authorization.split(" ")[1];
+    return { data: response.data, accessToken }; // Return signup result
+  } catch (error: any) {
+    throw new Error("Failed to signup user: " + error.message);
+  }
+}
+
+function generateRandomPassword(length: number = 12) {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    password += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+  }
+  return password;
+}
 
 export default NextAuth(authOptions);

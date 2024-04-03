@@ -48,16 +48,31 @@ A starting point for your Ruby on Rails, PostgreSQL, Next.js, and Tailwind CSS p
     GMAIL_USERNAME=your_gmail_username
     GMAIL_PASSWORD=your_gmail_password
     ```
-4. Setup the database:
+4. Generate a secret
+    ```bash
+    bundle exec rails secret
+    ```
+5. Encrypted credentials file
+    ```bash
+    #VSCode 
+    EDITOR='code --wait' rails credentials:edit
+    ```
+6. Then we add a new key
+    ```bash
+    # Other secrets...  
+    #Used as the base secret for Devise-JWT 
+    devise_jwt_secret_key: (copy and paste the generated secret here)
+    ```
+7. Setup the database:
     ```bash
     rails db:create
     rails db:migrate
     ```
-5. Install dependencies frontend
+8. Install dependencies frontend
     ```bash
     cd frontend && yarn install && cd ..
     ```
-6. Start the servers using the provided script:
+9. Start the servers using the provided script:
     ```bash
     ./start-servers.sh
     ```

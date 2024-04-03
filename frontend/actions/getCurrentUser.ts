@@ -14,7 +14,7 @@ export async function getCurrentUser() {
 
     if (!session?.user?.email) return null;
     // const data = await getUserByEmail(session.user.email, session.user.accessToken);
-    // console.log("session?.user", session?.user);
+    console.log("session?.user", session?.user);
     
     return session?.user
     // return null

@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   # devise_for :users
   # Devise routes
   devise_for :users, path: '', path_names: {
-    sign_in: 'login',
-    sign_out: 'logout',
-    registration: 'signup'
-  }, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
-  }
+  sign_in: 'login',
+  sign_out: 'logout',
+  registration: 'signup',
+}, controllers: {
+  sessions: 'users/sessions',
+  registrations: 'users/registrations'
+}
+
 
   # Custom email verification routes
   scope :verify do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   #  resources :users, only: [] do
   #   get 'show_by_email', on: :collection
   # end
+  
 
   # namespace :api, defaults: { format: 'json' } do
   #   namespace :v1 do
