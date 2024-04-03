@@ -80,7 +80,7 @@ This script will start both the Rails backend server and the Next.js frontend se
 
 Access the frontend application at [http://localhost:5100](http://localhost:5100) in your web browser.
 
-Access the backend API endpoints at [http://localhost:3001/api/v1](http://localhost:3001/api/v1).
+Access the backend API endpoints at [http://localhost:3001/](http://localhost:3001/).
 
 ## Contributing
 
